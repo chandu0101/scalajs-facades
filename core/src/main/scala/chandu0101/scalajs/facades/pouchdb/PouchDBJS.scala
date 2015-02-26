@@ -267,6 +267,7 @@ case class PouchDBException(err: js.Dynamic) extends Exception
 @JSName("PouchDB")
 class PouchDBJS extends js.Object {
 
+  var _db_name  : String = js.native
 
   def this(name: js.UndefOr[String] = js.undefined, options: js.UndefOr[PouchDBOptions] = js.undefined) = this()
 

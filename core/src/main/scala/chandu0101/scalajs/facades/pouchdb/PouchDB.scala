@@ -1,5 +1,6 @@
 package chandu0101.scalajs.facades.pouchdb
 
+import chandu0101.scalajs.facades.pouchdb.PouchDBJS.CALLBACK
 import org.scalajs.dom
 
 import scala.concurrent.{Promise, Future}
@@ -11,6 +12,7 @@ import scala.scalajs.js.UndefOr
  */
 class PouchDB(pouchDBJS : PouchDBJS) {
 
+  val name : String = pouchDBJS._db_name
 
   def get(docId: String, options: js.UndefOr[GetOptions] = GetOptions()) : Future[js.Dynamic] = {
     val promise = Promise[js.Dynamic]
@@ -163,6 +165,7 @@ class PouchDB(pouchDBJS : PouchDBJS) {
     promise.future
   }
 
+  def sync(remoteDB: String, options: ReplicateOptions = ReplicateOptions()): ChangesEventEmitter = pouchDBJS.sync(remoteDB,options)
 
 }
 
