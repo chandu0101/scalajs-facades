@@ -21,3 +21,6 @@ project/plugins/project/
 
 #mac
 .DS_Store
+
+#project
+examples/js/

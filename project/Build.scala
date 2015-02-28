@@ -11,7 +11,7 @@ object ScalajsFacades extends Build {
 
   val scalajsReactVersion = "0.8.0"
   
-  val scalajsReactComponentsVersion = "0.1.1-SNAPSHOT"
+  val scalajsReactComponentsVersion = "0.0.1-SNAPSHOT"
 
   val pouchDBVersion = "3.3.0"
 
