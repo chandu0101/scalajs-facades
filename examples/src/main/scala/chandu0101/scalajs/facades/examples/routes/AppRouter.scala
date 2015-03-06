@@ -77,7 +77,7 @@ object AppRouter {
 
 
   val baseUrl = BaseUrl.fromWindowOrigin / "scalajs-facades/examples/"
-  //  val baseUrl = BaseUrl.fromWindowOrigin / "sjsf/"
+//    val baseUrl = BaseUrl.fromWindowOrigin / "sjsf/"
 
   val C = AppPage.router(baseUrl)
 }

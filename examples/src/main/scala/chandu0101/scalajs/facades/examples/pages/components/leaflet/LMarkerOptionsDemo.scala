@@ -42,7 +42,7 @@ object LMarkerOptionsDemo {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 10.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/"
+    LIconDefault.imagePath = "images"
     LMarker(MY_LOCATION,
       LMarkerOptions.draggable(true) // make marker icon draggable
         .title("Hover Text")   // text to display when hovered

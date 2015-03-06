@@ -41,7 +41,7 @@ object LPopupDemo {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 10.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
     LMarker(MY_LOCATION)
       .addTo(map) 
       .bindPopup("<b>My Place!</b>")

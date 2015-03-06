@@ -105,7 +105,7 @@ object LInteractiveMap {
     // define map
     val map = LMap("map").setView(LLatLng(34.8, -96), 4.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
 
     def getColor(d: Double) = if (d > 1000) "#800026"
     else if (d > 500) "#BD0026"

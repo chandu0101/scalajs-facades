@@ -59,7 +59,7 @@ object LGeoJSONonEachFeature {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 10.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
     //The onEachFeature option is a function that gets called on each feature before adding it to a GeoJSON layer. 
     // A common reason to use this option is to attach a popup to features when they are clicked.
     val onEachFeatureFunc: js.Function2[js.Dynamic, LFeatureGroup, Any] = (feature: js.Dynamic, layer: LFeatureGroup) => {

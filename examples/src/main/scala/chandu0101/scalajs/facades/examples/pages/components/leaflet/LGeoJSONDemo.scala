@@ -50,7 +50,7 @@ object LGeoJSONDemo {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 10.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
     LGeoJson(JSON.parse(geoJSONPointFeature)).addTo(map)
     
   })

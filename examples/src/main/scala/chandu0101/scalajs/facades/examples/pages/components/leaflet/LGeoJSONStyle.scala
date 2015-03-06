@@ -76,7 +76,7 @@ object LGeoJSONStyle {
     // define map 
     val map = LMap("map").setView(LLatLng(41.8369,-87.6847), 4.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
     val styleFunction : js.Function1[js.Dynamic,js.Any] = (feature : js.Dynamic) => {
         if(feature.properties.party.toString == "Republican") json("color" -> "orange")
          else json("color" -> "green")

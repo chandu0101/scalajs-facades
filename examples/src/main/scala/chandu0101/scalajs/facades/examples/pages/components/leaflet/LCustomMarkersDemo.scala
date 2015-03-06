@@ -55,7 +55,7 @@ object LCustomMarkersDemo {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 9.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
     def getLeafIconOptions( icon : String) = LIconOptions.iconUrl(icon)
         .shadowUrl("images/leaf-shadow.png")
         .shadowSize(LPoint(50,64))

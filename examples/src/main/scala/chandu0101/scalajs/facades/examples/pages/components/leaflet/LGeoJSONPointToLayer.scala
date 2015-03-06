@@ -66,7 +66,7 @@ object LGeoJSONPointToLayer {
     // define map 
     val map = LMap("map").setView(MY_LOCATION, 10.0)
     map.addLayer(getTileLayer)
-    LIconDefault.imagePath = "images/" // set images path
+    LIconDefault.imagePath = "images" // set images path
 
     //Points are handled differently than polylines and polygons. By default simple markers are drawn for GeoJSON Points. We can alter this by passing a pointToLayer function in a GeoJSON options object when creating the GeoJSON layer.
     val pointToLayerFunc: js.Function2[js.Dynamic, LLatLng, js.Any] = (feature: js.Dynamic, latlng: LLatLng) => {

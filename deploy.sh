@@ -25,6 +25,7 @@ cp  examples/js/examples-opt.js $projectPath/js/
 cp  examples/js/examples-jsdeps.js $projectPath/js/
 
 cp -r examples/styles/ $projectPath/styles/
+cp -r examples/images/ $projectPath/images/
 
 cd $ghPagesPath
 
