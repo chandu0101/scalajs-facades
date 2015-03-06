@@ -13,6 +13,7 @@ import japgolly.scalajs.react._
 object PouchDBPage {
 
   lazy val menu = List(
+    ExampleLeftNav.Menu(text = "Info", route = pInfo.path.value),
     ExampleLeftNav.Menu(text = "Create Database", route = pcreateDB.path.value),
     ExampleLeftNav.Menu(text = "Delete Database", route = pdeleteDB.path.value),
     ExampleLeftNav.Menu(text = "Create/Update Doc", route = pcreateupdateDoc.path.value),

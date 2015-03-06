@@ -14,7 +14,7 @@ object ScalajsFacades extends Build {
   val scalajsReactComponentsVersion = "0.0.1-SNAPSHOT"
 
   val pouchDBVersion = "3.3.0"
-
+  val leafletVersion = "0.7.3"
 
   type PE = Project => Project
 
@@ -65,7 +65,7 @@ object ScalajsFacades extends Build {
     p => p.settings(
       scalacOptions ++= (if (isSnapshot.value) Seq.empty else Seq({
         val a = p.base.toURI.toString.replaceFirst("[^/]+/?$", "")
-        val g = "https://raw.githubusercontent.com/chandu0101/scalajs-react-components"
+        val g = "https://raw.githubusercontent.com/chandu0101/scalajs-facades"
         s"-P:scalajs:mapSourceURI:$a->$g/v${version.value}/"
       }))
     )
@@ -85,7 +85,10 @@ object ScalajsFacades extends Build {
         "com.chandu0101.scalajs-react-components" %%% "core" % scalajsReactComponentsVersion
       ),
       jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React",
-        "org.webjars" % "pouchdb" % pouchDBVersion / "pouchdb.min.js"
+        "org.webjars" % "pouchdb" % pouchDBVersion / "pouchdb.min.js",
+        "org.webjars" % "leaflet" % leafletVersion / "leaflet.js",
+        ProvidedJS / "leafletpouchdbcached.js" dependsOn("leaflet.js"),
+        ProvidedJS / "usstates.js"
       ),
       jsDependencies += ProvidedJS / "highlight.pack.js",
       skip in packageJSDependencies := false)

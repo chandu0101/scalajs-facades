@@ -3,6 +3,7 @@ package chandu0101.scalajs.facades.examples.pages
 
 import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage
 import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage._
+import chandu0101.scalajs.react.components.mixins.AsyncLoad
 import chandu0101.scalajs.react.components.util.MTypes
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
@@ -31,7 +32,8 @@ object HomePage {
       color := "white",
        textDecoration := "none",
       flexDirection := "column",
-      alignItems := "center"
+      alignItems := "center",
+      margin := "20px"
     )
     
     def itemTitle = Seq(background := "rgb(240, 176, 10)",
@@ -47,19 +49,20 @@ object HomePage {
   
   case class Library(name : String, description : String ,route : String)
   
-  case class State(hover: Boolean = false)
+  case class State(hover: String = "")
 
   class Backend(t: BackendScope[_, State]) {
 
-   def onMouseEnter = t.modState(_.copy(hover = true))
-   
-    def onMouseLeave = t.modState(_.copy(hover = false))
+   def onMouseEnter(name : String) = t.modState(_.copy(hover = name))
     
+   def onMouseLeave = t.modState(_.copy(hover = ""))
+//    this.getClass.getR
   }
 
   lazy val libraries  = List(
-   Library(name = "PouchDB" ,description = "Database that syncs." ,route = pcreateDB.path.value )
-  
+   Library(name = "PouchDB" ,description = "Database that syncs." ,route = pInfo.path.value ),
+   Library(name = "LeafLet" ,description = "Simple and Robust Javascript library for maps on all devices!" ,route = linfo.path.value )
+
   )
   
   val component = ReactComponentB[Unit]("HomePage")
@@ -68,9 +71,9 @@ object HomePage {
     .render((P, S, B) => {
      div(Style.content)(
        libraries.map(item => {
-          a(Style.item, S.hover ?= Style.itemHover,
+          a(Style.item, S.hover==item.name  ?= Style.itemHover,
             href := item.route,
-            onMouseEnter --> B.onMouseEnter ,
+            onMouseEnter --> B.onMouseEnter(item.name) ,
             onMouseLeave --> B.onMouseLeave,
            h3(Style.itemTitle)(item.name),
            p(item.description)
