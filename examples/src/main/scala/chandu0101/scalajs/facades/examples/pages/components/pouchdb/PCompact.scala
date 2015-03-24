@@ -2,7 +2,7 @@ package chandu0101.scalajs.facades.examples.pages.components.pouchdb
 
 import chandu0101.scalajs.facades.examples.pages.common.CodeExample
 import chandu0101.scalajs.facades.examples.util.Constants._
-import chandu0101.scalajs.facades.pouchdb.{AllDocsOptions, PouchDB}
+import chandu0101.scalajs.facades.pouchdb.PouchDB
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 

@@ -18,13 +18,14 @@ object PSync {
 
   val code =
     """
-      |  val sync = PouchDB.sync("scalajs","scalajs2",ReplicateOptions(live = true))
+      | val sync = PouchDB.sync("scalajs","scalajs2",ReplicateOptions.live(true).result)
       |               .onChange((resp : js.Dynamic) => println(s" Replicate DB Chnages ${JSON.stringify(resp)}"))
-      |  val db = PouchDB.create("scalajs")
-      |  val db2 =x PouchDB.create("scalajs2")
-      |  db.post(json("sync1" -> "fromdb1"))
-      |  db2.post(json("sync2" -> "fromdb2"))
-      |  dom.setTimeout(() => sync.cancel(),2000)
+      | val db = PouchDB.create("scalajs")
+      | val db2 = PouchDB.create("scalajs2")
+      | db.post(json("sync1" -> "fromdb1"))
+      | db2.post(json("sync2" -> "fromdb2"))
+      | dom.setTimeout(() => sync.cancel(),2000)
+      | 
     """.stripMargin
   
   val component = ReactComponentB[Unit]("PReplicate")
@@ -38,7 +39,7 @@ object PSync {
 
   })
     .componentWillMount(scope => {
-    val sync = PouchDB.sync("scalajs","scalajs2",ReplicateOptions(live = true))
+    val sync = PouchDB.sync("scalajs","scalajs2",ReplicateOptions.live(true).result)
                .onChange((resp : js.Dynamic) => println(s" Replicate DB Chnages ${JSON.stringify(resp)}"))
      val db = PouchDB.create("scalajs")
      val db2 = PouchDB.create("scalajs2")

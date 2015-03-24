@@ -1,9 +1,8 @@
 package chandu0101.scalajs.facades.pouchdb
 
-import chandu0101.scalajs.facades.pouchdb.PouchDBJS.CALLBACK
 import org.scalajs.dom
 
-import scala.concurrent.{Promise, Future}
+import scala.concurrent.{Future, Promise}
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr
 
@@ -23,8 +22,11 @@ class PouchDB(pouchDBJS : PouchDBJS) {
     promise.future
   }
 
-  def get(docId: String, options: js.UndefOr[GetOptions] = GetOptions()) : Future[js.Dynamic] = {
+  def get(docId: String, options: js.UndefOr[GetOptions] = js.undefined) : Future[js.Dynamic] = {
+    if(options.isDefined)
     wrapPouchCall(cb => pouchDBJS.getWithCallback(docId,options,cb))
+    else
+      wrapPouchCall(cb => pouchDBJS.get(docId,cb))
   }
 
   def destroy(options: js.UndefOr[js.Dynamic] = js.undefined): Future[js.Dynamic] = {
@@ -52,11 +54,11 @@ class PouchDB(pouchDBJS : PouchDBJS) {
     wrapPouchCall(cb => pouchDBJS.bulkDocs(docs,options,cb))
   }
 
-  def allDocs(options: AllDocsOptions = AllDocsOptions()): Future[js.Dynamic] = {
+  def allDocs(options: AllDocsOptions = AllDocsOptions.result): Future[js.Dynamic] = {
     wrapPouchCall(cb => pouchDBJS.allDocs(options,cb))
   }
 
-  def changes(options : ChangesOptions = ChangesOptions()) : ChangesEventEmitter = {
+  def changes(options : ChangesOptions = ChangesOptions.result) : ChangesEventEmitter = {
     pouchDBJS.changes(options)
   }
 
@@ -74,7 +76,7 @@ class PouchDB(pouchDBJS : PouchDBJS) {
     wrapPouchCall(cb => pouchDBJS.removeAttachment(docId,attachmentId,rev,cb))
   }
 
-  def query(fun: js.Function, options: QueryOptions = QueryOptions()): Future[js.Dynamic] = {
+  def query(fun: js.Function, options: QueryOptions = QueryOptions.result): Future[js.Dynamic] = {
     wrapPouchCall(cb => pouchDBJS.query(fun,options,cb))
   }
 
@@ -94,7 +96,28 @@ class PouchDB(pouchDBJS : PouchDBJS) {
     wrapPouchCall(cb => pouchDBJS.revsDiff(diff,cb))
   }
 
-  def sync(remoteDB: String, options: ReplicateOptions = ReplicateOptions()): ChangesEventEmitter = pouchDBJS.sync(remoteDB,options)
+  def sync(remoteDB: String, options: ReplicateOptions = ReplicateOptions.result): ChangesEventEmitter = pouchDBJS.sync(remoteDB,options)
+
+  def search(options: QuickSearchOptions): Future[js.Dynamic] = {
+    wrapPouchCall(cb => pouchDBJS.search(options,cb))
+  }
+
+  def createIndex(options: CreateIndexOptions) :Future[js.Dynamic] = {
+    wrapPouchCall(cb => pouchDBJS.createIndex(options,cb))
+  }
+
+  def getIndexes() :Future[js.Dynamic] = {
+    wrapPouchCall(cb => pouchDBJS.getIndexes(cb))
+  }
+
+  def deleteIndex(index : js.Object):Future[js.Dynamic] = {
+    wrapPouchCall(cb => pouchDBJS.deleteIndex(index,cb))
+  }
+
+  def find(request : FindOptions):Future[js.Dynamic] = {
+    wrapPouchCall(cb => pouchDBJS.find(request,cb))
+  }
+
 
 }
 
@@ -102,9 +125,9 @@ object PouchDB {
   // may be there is better way ,lets find out latter
   def create(name: js.UndefOr[String] = js.undefined, options: js.UndefOr[PouchDBOptions] = js.undefined) = new PouchDB(new PouchDBJS(name,options))
 
-  def replicate(source: String, target: String, options: ReplicateOptions = ReplicateOptions()): ChangesEventEmitter = PouchDBJS.replicate(source,target,options)
+  def replicate(source: String, target: String, options: ReplicateOptions = ReplicateOptions.result): ChangesEventEmitter = PouchDBJS.replicate(source,target,options)
 
-  def sync(src: String, target: String, options: ReplicateOptions = ReplicateOptions()): ChangesEventEmitter = PouchDBJS.sync(src,target,options)
+  def sync(src: String, target: String, options: ReplicateOptions = ReplicateOptions.result): ChangesEventEmitter = PouchDBJS.sync(src,target,options)
 
   def plugin(plugins: js.Dynamic): Unit = PouchDBJS.plugin(plugins)
 

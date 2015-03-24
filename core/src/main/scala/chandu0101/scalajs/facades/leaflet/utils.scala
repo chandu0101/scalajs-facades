@@ -3,8 +3,8 @@ package chandu0101.scalajs.facades.leaflet
 import org.scalajs.dom.raw.HTMLElement
 
 import scala.scalajs.js
-import scala.scalajs.js.{undefined, UndefOr}
 import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.{UndefOr, undefined}
 
 /**
  * Created by chandrasekharkode on 3/3/15.

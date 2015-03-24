@@ -1,11 +1,9 @@
 package chandu0101.scalajs.facades.examples.pages.components.pouchdb
 
 import chandu0101.scalajs.facades.examples.pages.common.CodeExample
-import chandu0101.scalajs.facades.pouchdb.{PouchDBOptions, PouchDB}
+import chandu0101.scalajs.facades.pouchdb.PouchDB
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.all._
-
-import scala.scalajs.js
 
 /**
  * Created by chandrasekharkode .

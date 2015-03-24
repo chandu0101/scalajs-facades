@@ -6,7 +6,7 @@ import sbt._
 
 object ScalajsFacades extends Build {
 
-  val Scala211 = "2.11.5"
+  val Scala211 = "2.11.6"
 
 
   val scalajsReactVersion = "0.8.0"
@@ -85,9 +85,10 @@ object ScalajsFacades extends Build {
         "com.chandu0101.scalajs-react-components" %%% "core" % scalajsReactComponentsVersion
       ),
       jsDependencies ++= Seq("org.webjars" % "react" % "0.12.1" % scope / "react-with-addons.js" commonJSName "React",
-        "org.webjars" % "pouchdb" % pouchDBVersion / "pouchdb.min.js",
+        "org.webjars" % "pouchdb" % pouchDBVersion / "pouchdb.js",
         "org.webjars" % "leaflet" % leafletVersion / "leaflet.js",
         ProvidedJS / "leafletpouchdbcached.js" dependsOn("leaflet.js"),
+        ProvidedJS / "pouchdb.quick-search.js" dependsOn("pouchdb.js"),
         ProvidedJS / "usstates.js"
       ),
       jsDependencies += ProvidedJS / "highlight.pack.js",

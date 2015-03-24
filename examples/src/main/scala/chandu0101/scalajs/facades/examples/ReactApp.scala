@@ -1,7 +1,6 @@
 package chandu0101.scalajs.facades.examples
 
 import chandu0101.scalajs.facades.examples.routes.AppRouter
-import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage
 import japgolly.scalajs.react.React
 import org.scalajs.dom
 

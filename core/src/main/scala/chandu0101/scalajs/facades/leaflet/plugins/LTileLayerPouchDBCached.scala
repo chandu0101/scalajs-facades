@@ -1,6 +1,6 @@
 package chandu0101.scalajs.facades.leaflet.plugins
 
-import chandu0101.scalajs.facades.leaflet.{LTileLayerOptions, LTileLayer}
+import chandu0101.scalajs.facades.leaflet.{LTileLayer, LTileLayerOptions}
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName

@@ -2,7 +2,7 @@ package chandu0101.scalajs.facades.examples.pages.components.pouchdb
 
 import chandu0101.scalajs.facades.examples.pages.common.CodeExample
 import chandu0101.scalajs.facades.examples.util.Constants._
-import chandu0101.scalajs.facades.pouchdb.{ReplicateOptions, ChangesOptions, PouchDB}
+import chandu0101.scalajs.facades.pouchdb.{PouchDB, ReplicateOptions}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 import org.scalajs.dom
@@ -18,12 +18,12 @@ object PReplicate {
 
   val code =
     """
-      |  val rep = PouchDB.replicate("scalajs","scalajs2",ReplicateOptions(live = true))
+      | val rep = PouchDB.replicate("scalajs","scalajs2",ReplicateOptions.live(true).result)
       |               .onChange((resp : js.Dynamic) => println(s" Replicate DB Chnages ${JSON.stringify(resp)}"))
-      |  val db = PouchDB.create("scalajs")
-      |  db.post(json("checkrep" -> "chnagesrep"))
-      |  dom.setTimeout(() => rep.cancel(),2000) 
-      |  
+      | val db = PouchDB.create("scalajs")
+      | db.post(json("checkrep" -> "chnagesrep"))
+      | dom.setTimeout(() => rep.cancel(),2000)
+      |
     """.stripMargin
   
   val component = ReactComponentB[Unit]("PReplicate")
@@ -37,7 +37,7 @@ object PReplicate {
 
   })
     .componentWillMount(scope => {
-    val rep = PouchDB.replicate("scalajs","scalajs2",ReplicateOptions(live = true))
+    val rep = PouchDB.replicate("scalajs","scalajs2",ReplicateOptions.live(true).result)
                .onChange((resp : js.Dynamic) => println(s" Replicate DB Chnages ${JSON.stringify(resp)}"))
      val db = PouchDB.create("scalajs")
      db.post(json("checkrep" -> "chnagesrep"))

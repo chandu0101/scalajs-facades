@@ -2,7 +2,6 @@ package chandu0101.scalajs.facades.examples.pages
 
 
 import chandu0101.scalajs.facades.examples.pages.common.{ExampleLeftNav, LeftnavPage}
-import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage
 import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage._
 import japgolly.scalajs.react._
 
@@ -24,7 +23,7 @@ object PouchDBPage {
     ExampleLeftNav.Menu(text = "Changes", route = pChanges.path.value),
     ExampleLeftNav.Menu(text = "Replicate DB", route = pReplicate.path.value),
     ExampleLeftNav.Menu(text = "Sync DB's", route = pSync.path.value),
-    ExampleLeftNav.Menu(text = "DB Info", route = pInfo.path.value),
+//    ExampleLeftNav.Menu(text = "DB Info", route = pInfo.path.value),
     ExampleLeftNav.Menu(text = "DB Compact", route = pCompact.path.value),
     ExampleLeftNav.Menu(text = "Debug Mode", route = pDebug.path.value)
 

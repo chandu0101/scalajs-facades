@@ -1,15 +1,14 @@
 package chandu0101.scalajs.facades.examples.pages.components.pouchdb
 
 import chandu0101.scalajs.facades.examples.pages.common.CodeExample
-import chandu0101.scalajs.facades.examples.util.Constants
 import chandu0101.scalajs.facades.examples.util.Constants._
-import chandu0101.scalajs.facades.pouchdb.{AllDocsOptions, PouchDB, PouchDBOptions}
+import chandu0101.scalajs.facades.pouchdb.{AllDocsOptions, PouchDB}
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
 import scala.scalajs.js.JSON
-import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
  * Created by chandrasekharkode .
@@ -50,7 +49,7 @@ object PAllDocs {
       case (resp : js.Dynamic) => println(s"All Docs from without any options ${JSON.stringify(resp)}")
      }
      // to get doc fields included in results we must pass AllDocsOptions
-    db.allDocs(AllDocsOptions(include_docs = true)).onSuccess {
+    db.allDocs(AllDocsOptions.include_docs(true).result).onSuccess {
       case (resp : js.Dynamic) => println(s"All Docs with doc content included ${JSON.stringify(resp)}")
     }
   })

@@ -1,6 +1,6 @@
 package chandu0101.scalajs.facades.examples.pages
 
-import chandu0101.scalajs.facades.examples.pages.common.{LeftnavPage, ExampleLeftNav}
+import chandu0101.scalajs.facades.examples.pages.common.{ExampleLeftNav, LeftnavPage}
 import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage._
 import chandu0101.scalajs.react.components.mixins.AsyncLoad
 import japgolly.scalajs.react.{BackendScope, ReactComponentB, ReactNode}

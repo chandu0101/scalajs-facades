@@ -1,15 +1,10 @@
 package chandu0101.scalajs.facades.examples.pages
 
 
-import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage
 import chandu0101.scalajs.facades.examples.routes.AppRouter.AppPage._
-import chandu0101.scalajs.react.components.mixins.AsyncLoad
-import chandu0101.scalajs.react.components.util.MTypes
+import chandu0101.scalajs.react.components.all._
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.vdom.all._
-import scala.scalajs.js
-import chandu0101.scalajs.react.components.all._
-import chandu0101.scalajs.react.components.materialui.styles.MaterialUICss._
 
 
 /**

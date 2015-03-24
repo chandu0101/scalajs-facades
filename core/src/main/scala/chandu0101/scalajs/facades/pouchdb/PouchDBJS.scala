@@ -1,81 +1,80 @@
 package chandu0101.scalajs.facades.pouchdb
 
+import chandu0101.scalajs.facades._
 import chandu0101.scalajs.facades.pouchdb.PouchDBJS.CALLBACK
 import org.scalajs.dom
+
 import scala.scalajs.js
+import scala.scalajs.js.{Array => JArray}
 import scala.scalajs.js.Dynamic.{literal => json}
-import scala.scalajs.js.UndefOr
 import scala.scalajs.js.annotation.JSName
+import scala.scalajs.js.{UndefOr, undefined}
 
 /**
  * Created by chandrasekharkode .
  */
 
 
-trait PouchDBAjaxOptions extends js.Object {
-  var cache: js.UndefOr[Boolean] = js.native
-  var headers: js.UndefOr[String] = js.native
-}
+trait PouchDBAjaxOptions extends js.Object
 
-object PouchDBAjaxOptions {
-  def apply(headers: js.UndefOr[String] = js.undefined,
-            cache: js.UndefOr[Boolean] = false) =
-    json("cache" -> cache,
-      "headers" -> headers).asInstanceOf[PouchDBAjaxOptions]
+object PouchDBAjaxOptions extends PouchDBAjaxOptionsBuilder(noOpts)
 
-}
+class PouchDBAjaxOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[PouchDBAjaxOptions, PouchDBAjaxOptionsBuilder](new PouchDBAjaxOptionsBuilder(_)) {
 
-trait PouchDBOptions extends js.Object {
-  var name: js.UndefOr[String] = js.native
-  var auto_compaction: js.UndefOr[Boolean] = js.native
-  var adapter: js.UndefOr[String] = js.native
-  var ajax: js.UndefOr[PouchDBAjaxOptions] = js.native
-}
+  def headers(v: String) = jsOpt("headers", v)
 
-object PouchDBOptions {
-  def apply(adapter: js.UndefOr[String] = js.undefined,
-            auto_compaction: js.UndefOr[Boolean] = false,
-            ajax: js.UndefOr[PouchDBAjaxOptions] = js.undefined,
-            name: js.UndefOr[String] = js.undefined) =
-    json("name" -> name,
-      "auto_compaction" -> auto_compaction,
-      "adapter" -> adapter,
-      "ajax" -> ajax).asInstanceOf[PouchDBOptions]
-}
-
-trait AllDocsOptions extends js.Object {
-
-  var include_docs: js.UndefOr[Boolean] = js.native
-  var conflicts: js.UndefOr[Boolean] = js.native
-  var attachments: js.UndefOr[Boolean] = js.native
-  var startkey: js.UndefOr[String] = js.native
-  var endkey: js.UndefOr[String] = js.native
-  var inclusive_end: js.UndefOr[Boolean] = js.native
-  var limit: js.UndefOr[Int] = js.native
-  var skip: js.UndefOr[Int] = js.native
-  var descending: js.UndefOr[Boolean] = js.native
-  var key: js.UndefOr[String] = js.native
-  var keys: js.UndefOr[js.Array[String]] = js.native
+  def cache(v: Boolean) = jsOpt("cache", v)
 
 }
 
 
-object AllDocsOptions {
+trait PouchDBOptions extends js.Object
 
-  def apply(attachments: js.UndefOr[Boolean] = false,
-            descending: js.UndefOr[Boolean] = false,
-            startkey: js.UndefOr[String] = js.undefined,
-            keys: js.UndefOr[js.Array[String]] = js.undefined,
-            key: js.UndefOr[String] = js.undefined,
-            endkey: js.UndefOr[String] = js.undefined,
-            conflicts: js.UndefOr[Boolean] = false,
-            inclusive_end: js.UndefOr[Boolean] = true,
-            limit: js.UndefOr[Int] = js.undefined,
-            skip: js.UndefOr[Int] = js.undefined,
-            include_docs: js.UndefOr[Boolean] = false) =
-    json("attachments" -> attachments, "endkey" -> endkey, "key" -> key, "conflicts" -> conflicts, "include_docs" -> include_docs, "keys" -> keys, "skip" -> skip, "startkey" -> startkey, "limit" -> limit, "descending" -> descending, "inclusive_end" -> inclusive_end).asInstanceOf[AllDocsOptions]
+object PouchDBOptions extends PouchDBOptionsBuilder(noOpts)
+
+class PouchDBOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[PouchDBOptions, PouchDBOptionsBuilder](new PouchDBOptionsBuilder(_)) {
+
+  def auto_compaction(v: Boolean) = jsOpt("auto_compaction", v)
+
+  def adapter(v: String) = jsOpt("adapter", v)
+
+  def name(v: String) = jsOpt("name", v)
+
+  def ajax(v: PouchDBAjaxOptions) = jsOpt("ajax", v)
 
 }
+
+
+trait AllDocsOptions extends js.Object
+
+object AllDocsOptions extends AllDocsOptionsBuilder(noOpts)
+
+class AllDocsOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[AllDocsOptions, AllDocsOptionsBuilder](new AllDocsOptionsBuilder(_)) {
+
+  def startkey(v: String) = jsOpt("startkey", v)
+
+  def descending(v: Boolean) = jsOpt("descending", v)
+
+  def keys(v: js.Array[String]) = jsOpt("keys", v)
+
+  def key(v: String) = jsOpt("key", v)
+
+  def inclusive_end(v: Boolean) = jsOpt("inclusive_end", v)
+
+  def conflicts(v: Boolean) = jsOpt("conflicts", v)
+
+  def include_docs(v: Boolean) = jsOpt("include_docs", v)
+
+  def skip(v: Int) = jsOpt("skip", v)
+
+  def attachments(v: Boolean) = jsOpt("attachments", v)
+
+  def endkey(v: String) = jsOpt("endkey", v)
+
+  def limit(v: Int) = jsOpt("limit", v)
+
+}
+
 
 trait EventEmitter extends js.Object {
   def on(event: String, listener: js.Function1[js.Dynamic, Any]): this.type = js.native
@@ -111,117 +110,114 @@ object ChangesEventEmitter {
 
 }
 
-trait ChangesOptions extends js.Object {
 
-  var include_docs: UndefOr[Boolean] = js.native
-  var conflicts: UndefOr[Boolean] = js.native
-  var attachments: UndefOr[Boolean] = js.native
-  var descending: UndefOr[Boolean] = js.native
-  var filter: UndefOr[Boolean] = js.native
-  var doc_ids: UndefOr[js.Array[String]] = js.native
-  var since: UndefOr[String] = js.native
-  var live: UndefOr[Boolean] = js.native
-  var limit: UndefOr[Int] = js.native
-  var style: UndefOr[String] = js.native
-  var view: UndefOr[js.Function] = js.native
-  var returnDocs: UndefOr[Boolean] = js.native
-  var batch_size: UndefOr[Int] = js.native
+trait ChangesOptions extends js.Object
 
-}
+object ChangesOptions extends ChangesOptionsBuilder(noOpts)
 
-object ChangesOptions {
+class ChangesOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[ChangesOptions, ChangesOptionsBuilder](new ChangesOptionsBuilder(_)) {
 
-  def apply(doc_ids: UndefOr[js.Array[String]] = js.undefined,
-            live: UndefOr[Boolean] = false,
-            attachments: UndefOr[Boolean] = false,
-            descending: UndefOr[Boolean] = false,
-            returnDocs: UndefOr[Boolean] = false,
-            style: UndefOr[String] = js.undefined,
-            batch_size: UndefOr[Int] = js.undefined,
-            conflicts: UndefOr[Boolean] = false,
-            filter: UndefOr[Boolean] = false,
-            limit: UndefOr[Int] = js.undefined,
-            view: UndefOr[js.Function] = js.undefined,
-            since: UndefOr[String] = js.undefined,
-            include_docs: UndefOr[Boolean] = false) =
-    json("attachments" -> attachments, "view" -> view, "since" -> since, "filter" -> filter, "conflicts" -> conflicts, "include_docs" -> include_docs, "limit" -> limit, "style" -> style, "batch_size" -> batch_size, "descending" -> descending, "doc_ids" -> doc_ids, "returnDocs" -> returnDocs, "live" -> live).asInstanceOf[ChangesOptions]
+  def doc_ids(v: js.Array[String]) = jsOpt("doc_ids", v)
+
+  def descending(v: Boolean) = jsOpt("descending", v)
+
+  def live(v: Boolean) = jsOpt("live", v)
+
+  def returnDocs(v: Boolean) = jsOpt("returnDocs", v)
+
+  def style(v: String) = jsOpt("style", v)
+
+  def batch_size(v: Int) = jsOpt("batch_size", v)
+
+  def since(v: String) = jsOpt("since", v)
+
+  def view(v: js.Function) = jsOpt("view", v)
+
+  def conflicts(v: Boolean) = jsOpt("conflicts", v)
+
+  def include_docs(v: Boolean) = jsOpt("include_docs", v)
+
+  def attachments(v: Boolean) = jsOpt("attachments", v)
+
+  def limit(v: Int) = jsOpt("limit", v)
+
+  def filter(v: Boolean) = jsOpt("filter", v)
 
 }
 
-trait ReplicateOptions extends js.Object {
 
-  var live: UndefOr[Boolean] = js.native
-  var retry: UndefOr[Boolean] = js.native
-  var filter: UndefOr[Boolean] = js.native
-  var query_params: UndefOr[String] = js.native
-  var doc_ids: UndefOr[js.Array[String]] = js.native
-  var since: UndefOr[String] = js.native
-  var create_target: UndefOr[Boolean] = js.native
-  var batch_size: UndefOr[Int] = js.native
-  var batches_limit: UndefOr[Int] = js.native
+trait ReplicateOptions extends js.Object
+
+object ReplicateOptions extends ReplicateOptionsBuilder(noOpts)
+
+class ReplicateOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[ReplicateOptions, ReplicateOptionsBuilder](new ReplicateOptionsBuilder(_)) {
+
+  def live(v: Boolean) = jsOpt("live", v)
+
+  def retry(v: Boolean) = jsOpt("retry", v)
+
+  def doc_ids(v: js.Array[String]) = jsOpt("doc_ids", v)
+
+  def query_params(v: String) = jsOpt("query_params", v)
+
+  def batch_size(v: Int) = jsOpt("batch_size", v)
+
+  def since(v: String) = jsOpt("since", v)
+
+  def filter(v: Boolean) = jsOpt("filter", v)
+
+  def create_target(v: Boolean) = jsOpt("create_target", v)
+
+  def batches_limit(v: Int) = jsOpt("batches_limit", v)
 
 }
 
-object ReplicateOptions {
-
-  def apply(live: UndefOr[Boolean] = false,
-            doc_ids: UndefOr[js.Array[String]] = js.undefined,
-            batches_limit: UndefOr[Int] = js.undefined,
-            batch_size: UndefOr[Int] = js.undefined,
-            query_params: UndefOr[String] = js.undefined,
-            create_target: UndefOr[Boolean] = false,
-            retry: UndefOr[Boolean] = false,
-            filter: UndefOr[Boolean] = false,
-            since: UndefOr[String] = js.undefined) =
-    json("create_target" -> create_target, "since" -> since, "filter" -> filter, "query_params" -> query_params, "batches_limit" -> batches_limit, "batch_size" -> batch_size, "retry" -> retry, "doc_ids" -> doc_ids, "live" -> live).asInstanceOf[ReplicateOptions]
-}
 
 trait Replicate extends js.Object {
-  def to(remoteDB: String, options: ReplicateOptions): ChangesEventEmitter = js.native
+  def to(remoteDB: String, options: ReplicateOptions = ???): ChangesEventEmitter = js.native
 
-  def from(remoteDB: String, options: ReplicateOptions): ChangesEventEmitter = js.native
+  def from(remoteDB: String, options: ReplicateOptions = ???): ChangesEventEmitter = js.native
 }
 
 
-trait QueryOptions extends js.Object {
-  var reduce: UndefOr[Boolean] = js.native
-  var include_docs: UndefOr[Boolean] = js.native
-  var conflicts: UndefOr[Boolean] = js.native
-  var attachments: UndefOr[Boolean] = js.native
-  var startkey: UndefOr[String] = js.native
-  var endkey: UndefOr[String] = js.native
-  var inclusive_end: UndefOr[Boolean] = js.native
-  var limit:  UndefOr[Int]  = js.native
-  var skip: UndefOr[Int] = js.native
-  var descending: UndefOr[Boolean] = js.native
-  var key: UndefOr[String] = js.native
-  var keys: UndefOr[js.Array[String]] = js.native
-  var group: UndefOr[Boolean] = js.native
-  var group_level: UndefOr[Int] = js.native
-  var stale: UndefOr[String] = js.native
-}
+trait QueryOptions extends js.Object
 
-object QueryOptions {
+object QueryOptions extends QueryOptionsBuilder(noOpts)
 
-  def apply( skip: UndefOr[Int] = js.undefined,
-             attachments: UndefOr[Boolean] = false,
-             descending: UndefOr[Boolean] = false,
-             key: UndefOr[String] = js.undefined,
-             endkey: UndefOr[String] = js.undefined,
-             startkey: UndefOr[String] = js.undefined,
-             include_docs: UndefOr[Boolean] = false,
-             inclusive_end: UndefOr[Boolean] = false,
-             reduce: UndefOr[Boolean] = false,
-             stale: UndefOr[String] = js.undefined,
-             group_level: UndefOr[Int] = js.undefined,
-             conflicts: UndefOr[Boolean] = false,
-             limit:  UndefOr[Int]  = js.undefined,
-             group: UndefOr[Boolean] = false,
-             keys: UndefOr[js.Array[String]] = js.undefined) =
-    json("attachments" -> attachments,"reduce" -> reduce,"include_docs" -> include_docs,"skip" -> skip,"startkey" -> startkey,"limit" -> limit,"descending" -> descending,"group_level" -> group_level,"endkey" -> endkey,"key" -> key,"conflicts" -> conflicts,"group" -> group,"keys" -> keys,"stale" -> stale,"inclusive_end" -> inclusive_end).asInstanceOf[QueryOptions]
+class QueryOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[QueryOptions, QueryOptionsBuilder](new QueryOptionsBuilder(_)) {
 
+  def startkey(v: String) = jsOpt("startkey", v)
+
+  def descending(v: Boolean) = jsOpt("descending", v)
+
+  def reduce(v: Boolean) = jsOpt("reduce", v)
+
+  def key(v: String) = jsOpt("key", v)
+
+  def inclusive_end(v: Boolean) = jsOpt("inclusive_end", v)
+
+  def include_docs(v: Boolean) = jsOpt("include_docs", v)
+
+  def skip(v: Int) = jsOpt("skip", v)
+
+  def endkey(v: String) = jsOpt("endkey", v)
+
+  def limit(v: Int) = jsOpt("limit", v)
+
+  def keys(v: js.Array[String]) = jsOpt("keys", v)
+
+  def stale(v: String) = jsOpt("stale", v)
+
+  def group(v: Boolean) = jsOpt("group", v)
+
+  def group_level(v: Int) = jsOpt("group_level", v)
+
+  def conflicts(v: Boolean) = jsOpt("conflicts", v)
+
+  def attachments(v: Boolean) = jsOpt("attachments", v)
 
 }
+
 
 trait PouchDBDebug extends js.Object {
   def enable(to: String = "*"): Unit = js.native
@@ -230,35 +226,111 @@ trait PouchDBDebug extends js.Object {
 
 }
 
-trait GetOptions extends js.Object {
 
-  var rev: UndefOr[String] = js.native
+trait GetOptions extends js.Object
 
-  var revs: UndefOr[Boolean] = js.native
+object GetOptions extends GetOptionsBuilder(noOpts)
 
-  var revs_info: UndefOr[Boolean] = js.native
+class GetOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[GetOptions, GetOptionsBuilder](new GetOptionsBuilder(_)) {
 
-  var open_revs: UndefOr[js.Dynamic] = js.native
+  def revs(v: Boolean) = jsOpt("revs", v)
 
-  var conflicts: UndefOr[Boolean] = js.native
+  def revs_info(v: Boolean) = jsOpt("revs_info", v)
 
-  var attachments: UndefOr[Boolean] = js.native
+  def open_revs(v: js.Dynamic) = jsOpt("open_revs", v)
 
-  var ajax: js.UndefOr[PouchDBAjaxOptions] = js.native
+  def conflicts(v: Boolean) = jsOpt("conflicts", v)
+
+  def rev(v: String) = jsOpt("rev", v)
+
+  def attachments(v: Boolean) = jsOpt("attachments", v)
+
+  def ajax(v: PouchDBAjaxOptions) = jsOpt("ajax", v)
+
+}
+
+
+trait FindOptions extends js.Object
+
+object FindOptions extends FindOptionsBuilder(noOpts)
+
+class FindOptionsBuilder(val dict :OptMap) extends JSOptionBuilder[FindOptions,FindOptionsBuilder](new FindOptionsBuilder(_)) {
+
+  def selector(v: js.Object) = jsOpt("selector",v)
+
+  def limit(v: Int) = jsOpt("limit",v)
+
+  def skip(v: Int) = jsOpt("skip",v)
+
+  def sort(v: JArray[String]) = jsOpt("sort",v)
+
+  def fields(v: JArray[String]) = jsOpt("fields",v)
 
 
 }
 
-object GetOptions {
-  def apply(revs_info: UndefOr[Boolean] = false,
-            conflicts: UndefOr[Boolean] = false,
-            revs: UndefOr[Boolean] = false,
-            attachments: UndefOr[Boolean] = false,
-            open_revs: UndefOr[js.Dynamic] = js.undefined,
-            rev: UndefOr[String] = js.undefined,
-            ajax: js.UndefOr[PouchDBAjaxOptions] = js.undefined) =
-    json("attachments" -> attachments, "conflicts" -> conflicts, "revs" -> revs, "open_revs" -> open_revs, "rev" -> rev, "revs_info" -> revs_info, "ajax" -> ajax).asInstanceOf[GetOptions]
 
+
+trait QuickSearchOptions extends js.Object
+
+object QuickSearchOptions extends QuickSearchOptionsBuilder(noOpts)
+
+class QuickSearchOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[QuickSearchOptions, QuickSearchOptionsBuilder](new QuickSearchOptionsBuilder(_)) {
+
+  def highlighting_post(v: String) = jsOpt("highlighting_post", v)
+
+  def stale(v: String) = jsOpt("stale", v)
+
+  def mm(v: Int) = jsOpt("mm", v)
+
+  def query(v: String) = jsOpt("query", v)
+
+  def skip(v: Int) = jsOpt("skip", v)
+
+  def filter(v: js.Function1[js.Dynamic, Boolean]) = jsOpt("filter", v)
+
+  def include_docs(v: Boolean) = jsOpt("include_docs", v)
+
+  def destroy(v: Boolean) = jsOpt("destroy", v)
+
+  def build(v: Boolean) = jsOpt("build", v)
+
+  def fields(v: js.Array[String]) = jsOpt("fields", v)
+
+  def fieldsBoosting(v: js.Object) = jsOpt("fields", v)
+
+  def highlighting(v: Boolean) = jsOpt("highlighting", v)
+
+  def highlighting_pre(v: String) = jsOpt("highlighting_pre", v)
+
+  def limit(v: Int) = jsOpt("limit", v)
+
+}
+
+
+trait IndexOptions extends js.Object
+
+object IndexOptions extends IndexOptionsBuilder(noOpts)
+
+class IndexOptionsBuilder(val dict :OptMap) extends JSOptionBuilder[IndexOptions,IndexOptionsBuilder](new IndexOptionsBuilder(_)) {
+
+  def ddoc(v: String) = jsOpt("ddoc",v)
+
+  def fields(v: JArray[String]) = jsOpt("fields",v)
+
+  def tpe(v: String) = jsOpt("type",v)
+
+  def name(v: String) = jsOpt("name",v)
+
+}
+
+
+trait CreateIndexOptions extends js.Object
+
+object CreateIndexOptions extends CreateIndexOptionsBuilder(noOpts)
+
+class CreateIndexOptionsBuilder(val dict :OptMap) extends JSOptionBuilder[CreateIndexOptions,CreateIndexOptionsBuilder](new CreateIndexOptionsBuilder(_)) {
+  def index(v: IndexOptions) = jsOpt("index",v)
 }
 
 case class PouchDBException(err: js.Dynamic) extends Exception
@@ -267,30 +339,32 @@ case class PouchDBException(err: js.Dynamic) extends Exception
 @JSName("PouchDB")
 class PouchDBJS extends js.Object {
 
-  var _db_name  : String = js.native
+  var _db_name: String = js.native
 
-  def this(name: js.UndefOr[String] = js.undefined, options: js.UndefOr[PouchDBOptions] = js.undefined) = this()
+  def this(name: UndefOr[String] = undefined, options: UndefOr[PouchDBOptions] = undefined) = this()
 
   def destroy(callback: CALLBACK = ???): Unit = js.native
 
   @JSName("destory")
-  def destroyWithOptions(options: js.UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def destroyWithOptions(options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
-  def put(doc: js.Dynamic, docId: js.UndefOr[String] = js.undefined, docRev: js.UndefOr[String] = js.undefined, options: js.UndefOr[js.Object] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def put(doc: js.Dynamic, docId: UndefOr[String] = undefined, docRev: UndefOr[String] = undefined, options: UndefOr[js.Object] = undefined, callback: CALLBACK = ???): Unit = js.native
 
-  def post(doc: js.Dynamic, options: js.UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def post(doc: js.Dynamic, options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   @JSName("get")
-  def getWithCallback(docId: String, options: js.UndefOr[GetOptions] = GetOptions(), callback: CALLBACK = ???): Unit = js.native
+  def getWithCallback(docId: String, options: UndefOr[GetOptions] = undefined, callback: CALLBACK = ???): Unit = js.native
+
+  def get(docId: String, callback: CALLBACK = ???): Unit = js.native
 
   //  def get(docId: String, options: js.UndefOr[GetOptions] = GetOptions()): Promise[js.Dynamic] = js.native
 
-  def remove(doc: js.Object, options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def remove(doc: js.Object, options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   @JSName("remove")
-  def removeWithId(docId: String, docRev: String, options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def removeWithId(docId: String, docRev: String, options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
-  def bulkDocs(docs: js.Any, options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def bulkDocs(docs: js.Any, options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   def allDocs(options: AllDocsOptions = ???, callback: CALLBACK = ???): Unit = js.native
 
@@ -302,26 +376,37 @@ class PouchDBJS extends js.Object {
 
   def putAttachment(docId: String, attachmentId: String, rev: String, attachment: dom.Blob, `type`: String, callback: CALLBACK = ???): Unit = js.native
 
-  def getAttachment(docId: String, attachmentId: String, options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def getAttachment(docId: String, attachmentId: String, options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   def removeAttachment(docId: String, attachmentId: String, rev: String, callback: CALLBACK = ???): Unit = js.native
 
   def query(fun: js.Function, options: QueryOptions = ???, callback: CALLBACK = ???): Unit = js.native
 
-  def viewCleanup(options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def viewCleanup(options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   def info(callback: CALLBACK): Unit = js.native
 
-  def compact(options: UndefOr[js.Dynamic] = js.undefined, callback: CALLBACK = ???): Unit = js.native
+  def compact(options: UndefOr[js.Dynamic] = undefined, callback: CALLBACK = ???): Unit = js.native
 
   def revsDiff(diff: js.Array[String], callback: CALLBACK = ???): Unit = js.native
+
+  def search(options: QuickSearchOptions, callback: CALLBACK): Unit = js.native
+
+  def createIndex(options: CreateIndexOptions,callback : CALLBACK) : Unit = js.native
+
+  def getIndexes(callback : CALLBACK) : Unit = js.native
+
+  def deleteIndex(index : js.Object,callback: CALLBACK):Unit = js.native
+
+  def find(request : FindOptions,callback : CALLBACK) : Unit = js.native
 
 }
 
 
 @JSName("PouchDB")
 object PouchDBJS extends EventEmitter {
-  type CALLBACK = js.Function2[js.UndefOr[js.Dynamic], js.UndefOr[js.Dynamic], _]
+
+  type CALLBACK = js.Function2[UndefOr[js.Dynamic], UndefOr[js.Dynamic], _]
 
   def replicate(source: String, target: String, options: ReplicateOptions = ???): ChangesEventEmitter = js.native
 
@@ -332,6 +417,7 @@ object PouchDBJS extends EventEmitter {
   def plugin(plugins: js.Dynamic): Unit = js.native
 
   val debug: PouchDBDebug = js.native
+
 }
 
 

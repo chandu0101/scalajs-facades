@@ -28,7 +28,7 @@ object PCreateDB {
     // using db name
      PouchDB.create("db1") // local
     // using options
-     PouchDB.create(options = PouchDBOptions(name = "db2"))
+     PouchDB.create(options = PouchDBOptions.name("db2").result)
   })
     .buildU
 

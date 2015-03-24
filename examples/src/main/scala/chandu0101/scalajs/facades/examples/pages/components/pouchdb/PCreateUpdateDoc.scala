@@ -4,10 +4,10 @@ import chandu0101.scalajs.facades.examples.pages.common.CodeExample
 import chandu0101.scalajs.facades.pouchdb.PouchDB
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.all._
-import scala.scalajs.js.Dynamic.{literal => json}
-import scala.concurrent.ExecutionContext.Implicits.global
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSON
 
 /**

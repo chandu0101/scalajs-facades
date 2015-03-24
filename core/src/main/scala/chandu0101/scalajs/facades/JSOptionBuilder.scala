@@ -1,8 +1,7 @@
 package chandu0101.scalajs.facades
 
 import scala.scalajs.js
-
-import js.JSConverters._
+import scala.scalajs.js.JSConverters._
 
 /**
  * //https://github.com/jducoeur/Querki/blob/a13a69c995dd7e4f0f4dc4df370e5ab66e540daf/querki/scalajs/src/main/scala/org/querki/jsext/JSOptionBuilder.scala

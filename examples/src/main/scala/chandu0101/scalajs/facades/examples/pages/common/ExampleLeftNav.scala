@@ -3,8 +3,8 @@ package chandu0101.scalajs.facades.examples.pages.common
 import chandu0101.scalajs.react.components.all._
 import chandu0101.scalajs.react.components.searchboxes.ReactSearchBox
 import japgolly.scalajs.react.vdom.all
-import japgolly.scalajs.react.{ReactComponentB, BackendScope}
 import japgolly.scalajs.react.vdom.all._
+import japgolly.scalajs.react.{BackendScope, ReactComponentB}
 
 import scala.scalajs.js
 

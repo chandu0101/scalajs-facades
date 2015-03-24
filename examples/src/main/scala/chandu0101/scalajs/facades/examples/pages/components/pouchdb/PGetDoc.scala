@@ -1,12 +1,11 @@
 package chandu0101.scalajs.facades.examples.pages.components.pouchdb
 
 import chandu0101.scalajs.facades.examples.pages.common.CodeExample
-import chandu0101.scalajs.facades.pouchdb.{PouchDBException, GetOptions, PouchDBOptions, PouchDB}
+import chandu0101.scalajs.facades.pouchdb.{PouchDB, PouchDBException}
 import japgolly.scalajs.react.ReactComponentB
 import japgolly.scalajs.react.vdom.all._
-import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.{Promise, Future}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.scalajs.js
 import scala.scalajs.js.Dynamic.{literal => json}
 import scala.scalajs.js.JSON
@@ -40,16 +39,15 @@ object PGetDoc {
   })
     .componentWillMount(scope => {
 
-     val db =  PouchDB.create("scalajs")
-     db.get("bpt-rice").onComplete {
-       case Success(resp : js.Dynamic) => println(s"doc with id bpt-rice is : ${JSON.stringify(resp)}")
-       case Failure(ex) => println(s"Error while fetching doc with id bpt-rice : ${ex.asInstanceOf[PouchDBException].err}")
-     }
+    val db = PouchDB.create("scalajs")
+    db.get("bpt-rice").onComplete {
+      case Success(resp: js.Dynamic) => println(s"doc with id bpt-rice is : ${JSON.stringify(resp)}")
+      case Failure(ex) => println(s"Error while fetching doc with id bpt-rice : ${ex.asInstanceOf[PouchDBException].err}")
+    }
 
   })
     .buildU
 
-  
 
   def apply() = component()
 }
