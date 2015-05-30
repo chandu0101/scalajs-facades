@@ -14,7 +14,7 @@ import scala.scalajs.js.{UndefOr, undefined}
 
 
 @JSName("L.LatLng")
-class LLatLng(lat: Double, lng: Double, alt: UndefOr[Double]) extends js.Object {
+class LLatLng(val lat: Double, val lng: Double, alt: UndefOr[Double]) extends js.Object {
   def this(lat: Double, lng: Double) = this(lat, lng, undefined)
 
   def distanceTo(other: LLatLng): Double = js.native
@@ -31,7 +31,7 @@ object LLatLng {
 
 
 @JSName("L.Point")
-class LPoint(x: Double, y: Double, roundB: UndefOr[Boolean]) extends js.Object {
+class LPoint(val x: Double, val y: Double, val roundB: UndefOr[Boolean]) extends js.Object {
   def this(x: Double, y: Double) = this(x, y, undefined)
 
   def add(other: LPoint): LPoint = js.native
@@ -574,9 +574,9 @@ trait LIControl extends js.Object {
 //  def onAdd(map: LMap): HTMLElement = js.native
 
   var onAdd :js.Function1[LMap,HTMLElement] = js.native
-  
+
   var onRemove : js.Function1[LMap,Any] = js.native
-  
+
   var update : js.Function1[UndefOr[js.Dynamic],Any] = js.native
 //  def onRemove(map: LMap): Unit = js.native
 
@@ -690,7 +690,7 @@ trait LIHandler extends js.Object {
 
 
 @JSName("L.Marker")
-class LMarker extends LEventEmitter {
+class LMarker extends LILayer {
   def this(latlng: LLatLng, options: UndefOr[LMarkerOptions] = undefined) = this()
 
   val dragging: LIHandler = js.native
@@ -828,7 +828,7 @@ class LTileLayerOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[LTileLa
 
 
 @JSName("L.TileLayer")
-class LTileLayer extends LEventEmitter with LILayer {
+class LTileLayer extends LILayer {
 
   def this(urlTemplate: String, options: UndefOr[LTileLayerOptions] = undefined) = this()
 
@@ -945,7 +945,7 @@ class LPathOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[LPathOptions
 }
 
 @JSName("L.Path")
-trait LPath extends LEventEmitter {
+trait LPath extends LILayer {
 
   def addTo(map: LMap): this.type = js.native
 
