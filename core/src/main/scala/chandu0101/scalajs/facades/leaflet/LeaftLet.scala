@@ -14,7 +14,7 @@ import scala.scalajs.js.{UndefOr, undefined}
 
 
 @JSName("L.LatLng")
-class LLatLng(lat: Double, lng: Double, alt: UndefOr[Double]) extends js.Object {
+class LLatLng(val lat: Double, val lng: Double, alt: UndefOr[Double]) extends js.Object {
   def this(lat: Double, lng: Double) = this(lat, lng, undefined)
 
   def distanceTo(other: LLatLng): Double = js.native
@@ -31,7 +31,7 @@ object LLatLng {
 
 
 @JSName("L.Point")
-class LPoint(x: Double, y: Double, roundB: UndefOr[Boolean]) extends js.Object {
+class LPoint(val x: Double, val y: Double, val roundB: UndefOr[Boolean]) extends js.Object {
   def this(x: Double, y: Double) = this(x, y, undefined)
 
   def add(other: LPoint): LPoint = js.native
