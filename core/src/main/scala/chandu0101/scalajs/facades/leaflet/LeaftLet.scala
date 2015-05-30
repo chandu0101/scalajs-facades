@@ -574,9 +574,9 @@ trait LIControl extends js.Object {
 //  def onAdd(map: LMap): HTMLElement = js.native
 
   var onAdd :js.Function1[LMap,HTMLElement] = js.native
-  
+
   var onRemove : js.Function1[LMap,Any] = js.native
-  
+
   var update : js.Function1[UndefOr[js.Dynamic],Any] = js.native
 //  def onRemove(map: LMap): Unit = js.native
 
@@ -690,7 +690,7 @@ trait LIHandler extends js.Object {
 
 
 @JSName("L.Marker")
-class LMarker extends LEventEmitter {
+class LMarker extends LILayer {
   def this(latlng: LLatLng, options: UndefOr[LMarkerOptions] = undefined) = this()
 
   val dragging: LIHandler = js.native
@@ -828,7 +828,7 @@ class LTileLayerOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[LTileLa
 
 
 @JSName("L.TileLayer")
-class LTileLayer extends LEventEmitter with LILayer {
+class LTileLayer extends LILayer {
 
   def this(urlTemplate: String, options: UndefOr[LTileLayerOptions] = undefined) = this()
 
@@ -945,7 +945,7 @@ class LPathOptionsBuilder(val dict: OptMap) extends JSOptionBuilder[LPathOptions
 }
 
 @JSName("L.Path")
-trait LPath extends LEventEmitter {
+trait LPath extends LILayer {
 
   def addTo(map: LMap): this.type = js.native
 
